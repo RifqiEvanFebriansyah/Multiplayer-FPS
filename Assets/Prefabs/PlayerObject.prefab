@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 3424577910428851462}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22753906, y: 0.77, z: -0.09}
+  m_LocalPosition: {x: -0.1, y: 0.76, z: -0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -195,8 +195,8 @@ GameObject:
   - component: {fileID: 4077250050545106828}
   - component: {fileID: 1368149918232774535}
   - component: {fileID: 6839476583559648601}
-  - component: {fileID: 1145333860755254838}
   - component: {fileID: 8316382294205732392}
+  - component: {fileID: 8186093674657788827}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Player
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9691f48a9e041b4993df86891fd44ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   connectionID: 0
@@ -386,6 +386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f154d2f3a0cf6744808360005939c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   playerCamera: {fileID: 7790011861789275371}
   walkSpeed: 6
   runSpeed: 12
@@ -422,21 +425,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1145333860755254838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4626889389093072201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b752f2cb312534690680d3c41c118f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2228834783242355247, guid: 9fd83013f57ab8f40b4b17ce87ffd3ac, type: 3}
-  bulletSpeed: 50
-  bulletLifetime: 1
 --- !u!114 &8316382294205732392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +458,25 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &8186093674657788827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626889389093072201}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b752f2cb312534690680d3c41c118f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  bulletPrefab: {fileID: 2228834783242355247, guid: 9fd83013f57ab8f40b4b17ce87ffd3ac, type: 3}
+  bulletSpawnPoint: {fileID: 1216644597060479980}
+  bulletSpeed: 50
+  bulletLifetime: 1
 --- !u!1 &7692780780345062835
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,10 +576,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 104802, guid: bd3b513fc9331a940909e770957f1074, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 537893739635541017}
   m_SourcePrefab: {fileID: 100100000, guid: bd3b513fc9331a940909e770957f1074, type: 3}
+--- !u!4 &1216644597060479980 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8730704078539476763, guid: bd3b513fc9331a940909e770957f1074, type: 3}
+  m_PrefabInstance: {fileID: 7623418561592452343}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7623418561592094619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 428908, guid: bd3b513fc9331a940909e770957f1074, type: 3}
   m_PrefabInstance: {fileID: 7623418561592452343}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7623418561592556949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 104802, guid: bd3b513fc9331a940909e770957f1074, type: 3}
+  m_PrefabInstance: {fileID: 7623418561592452343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &537893739635541017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623418561592556949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b752f2cb312534690680d3c41c118f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  bulletPrefab: {fileID: 2228834783242355247, guid: 9fd83013f57ab8f40b4b17ce87ffd3ac, type: 3}
+  bulletSpawnPoint: {fileID: 1216644597060479980}
+  bulletSpeed: 50
+  bulletLifetime: 1

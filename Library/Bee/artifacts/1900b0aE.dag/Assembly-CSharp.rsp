@@ -543,7 +543,6 @@
 "Assets/Script/PowerUp.cs"
 "Assets/Script/PowerUpSpawner.cs"
 "Assets/Script/RecoilScript.cs"
-"Assets/Script/shooter.cs"
 "Assets/Script/Shooting.cs"
 "Assets/Script/SteamLobby.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
 [RequireComponent(typeof(CharacterController))]
-public class FPSController : MonoBehaviour
+public class FPSController : NetworkBehaviour
 {
     public Camera playerCamera;
     public float walkSpeed = 6f;
@@ -73,9 +74,9 @@ public class FPSController : MonoBehaviour
                 SetPosition();
                 PlayerModel.SetActive(true);
             }
-        }
-
-        #region Handles Movement
+            
+        if(isOwned){
+  #region Handles Movement
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -101,13 +102,14 @@ public class FPSController : MonoBehaviour
         {
             moveDirection.y -= gravity * Time.deltaTime;
         }
-        #endregion
+        #endregion  
 
         #region Handles Rotation
         characterController.Move(moveDirection * Time.deltaTime);
 
         if (canMove)
         {
+            
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
@@ -115,13 +117,17 @@ public class FPSController : MonoBehaviour
         }
 
         #endregion
+        }
+        }
+
+      
     }
 
     // Set random player position for example
     public void SetPosition()
     {
         // Pastikan posisi spawn tidak bentrok dengan objek lain atau atur secara manual
-        Vector3 spawnPosition = new Vector3(Random.Range(-5, 5), 0.8f, Random.Range(-15, 7));
+        Vector3 spawnPosition = new Vector3(Random.Range(453.7459f, 400.7459f), 198.8103f, Random.Range(1.868833f, 10f));
         transform.position = spawnPosition;
     }
 }

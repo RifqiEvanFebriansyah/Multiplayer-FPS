@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Shooting : MonoBehaviour
+public class Shooting : NetworkBehaviour
 {
     public GameObject bulletPrefab;       // Prefab untuk peluru
+    public Transform bulletSpawnPoint;    // Posisi dari peluru saat ditembakkan
     public float bulletSpeed = 20f;       // Kecepatan peluru saat ditembakkan
     public float bulletLifetime = 2f;     // Waktu hidup peluru sebelum dihancurkan
 
@@ -19,27 +21,27 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
-        if (bulletPrefab != null)
+        if (bulletPrefab != null && bulletSpawnPoint != null)
         {
-            // Menciptakan peluru di posisi dan rotasi dari GameObject ini
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            // Menciptakan peluru di posisi dan rotasi dari bulletSpawnPoint
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
 
             // Menambahkan gaya pada peluru agar bergerak ke depan
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.velocity = transform.forward * bulletSpeed;
+                rb.velocity = bulletSpawnPoint.forward * bulletSpeed;
             }
 
             // Menghancurkan peluru setelah waktu tertentu untuk menghindari penumpukan objek
             Destroy(bullet, bulletLifetime);
 
             // Menampilkan log untuk mengecek apakah menembak berhasil
-            Debug.Log("Menembak peluru dari posisi: " + transform.position);
+            Debug.Log("Menembak peluru dari posisi: " + bulletSpawnPoint.position);
         }
         else
         {
-            Debug.LogError("bulletPrefab belum di-assign.");
+            Debug.LogError("bulletPrefab atau bulletSpawnPoint belum di-assign.");
         }
     }
 }
